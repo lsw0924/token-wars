@@ -409,7 +409,10 @@ body::before {
 .exchange-container {
     position: relative;
     width: min(1200px, 100%);
+    max-height: 85vh; /* 화면 높이의 85%로 크기 제한 */
+    overflow-y: auto; /* 내용이 넘치면 세로 스크롤바 생성 */
     padding: 40px;
+    padding-right: 30px; /* 스크롤바 영역 확보를 위해 우측 여백 조정 */
     border-radius: 30px;
     background: rgba(7, 15, 55, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -417,15 +420,35 @@ body::before {
     backdrop-filter: blur(18px);
 }
 
+.exchange-container::-webkit-scrollbar {
+    width: 8px; /* 스크롤바 두께 */
+}
+
+.exchange-container::-webkit-scrollbar-track {
+    background: rgba(0, 255, 200, 0.05); /* 스크롤바 트랙 배경 (은은한 민트빛) */
+    border-radius: 10px;
+}
+
+.exchange-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff007f, #00ffc8); /* 핑크 -> 민트 그라데이션 */
+    border-radius: 10px;
+}
+
+.exchange-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff4da6, #00ffff); /* 호버 시 더 밝아짐 */
+}
+
+
 .back-link {
-    position: absolute;
-    right: 28px;
-    bottom: 24px;
-    display: inline-block;
+    display: block;      /* 한 줄을 통째로 차지하게 해서 */
+    text-align: right;   /* 글자를 오른쪽 끝으로 보냅니다 */
+    margin-top: 50px;    /* 위쪽 카드들과의 확실한 간격 */
+    margin-bottom: 20px; /* 스크롤 박스 맨 밑바닥과의 여백 */
+    
     color: #ff88cf;
     font-weight: 700;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .back-link:hover {
